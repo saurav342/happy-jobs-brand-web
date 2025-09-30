@@ -37,26 +37,170 @@
         a, button {
             transition: all 0.3s ease-in-out;
         }
+        
+        /* Modern Header Styles */
+        .header-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .logo-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+        }
+        
+        .logo-glow {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-glow::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, #8B5CF6, #EC4899, #3B82F6);
+            border-radius: 12px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            filter: blur(8px);
+        }
+        
+        .logo-container:hover .logo-glow::before {
+            opacity: 0.7;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-link:hover {
+            color: #3B82F6;
+            transform: translateY(-1px);
+        }
+        
+        .cta-button {
+            position: relative;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            padding: 12px 24px;
+            border-radius: 16px;
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+        }
+        
+        .mobile-menu-button {
+            padding: 8px;
+            border-radius: 12px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- Header / Navigation -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-800">
-                <span class="text-blue-500">Happy</span> Jobs
+    <!-- Modern Header / Navigation -->
+    <header class="header-glass sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo Section with Modern Styling -->
+            <div class="logo-container">
+                <div class="logo-glow">
+                    <img src="logo.gif" alt="Happy Jobs Logo" class="w-12 h-12">
+                </div>
             </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-gray-600 hover:text-blue-500">For Job Seekers</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">For Employers</a>
-                <a href="#" class="text-gray-600 hover:text-blue-500">Blog</a>
+            
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center space-x-2">
+                <a href="#" class="nav-link text-gray-700 relative z-10">For Job Seekers</a>
+                <a href="#" class="nav-link text-gray-700 relative z-10">For Employers</a>
+                <a href="#" class="nav-link text-gray-700 relative z-10">Resources</a>
+                <a href="#" class="nav-link text-gray-700 relative z-10">Blog</a>
             </div>
-            <div class="flex items-center space-x-4">
-                <a href="#" class="text-gray-600 hover:text-blue-500">Login</a>
-                <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 shadow-sm transform hover:scale-105">Post a Job</a>
+            
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <a href="#" class="hidden sm:block nav-link text-gray-700 relative z-10 font-medium">Login</a>
+                <a href="#" class="cta-button text-white relative overflow-hidden">
+                    <span class="relative z-10">Post a Job</span>
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden mobile-menu-button text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </nav>
+        
+        <!-- Animated Border -->
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
     </header>
 
     <main>
@@ -375,9 +519,9 @@
         <div class="container mx-auto px-6 py-16">
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
                 <div class="col-span-2 md:col-span-1">
-                    <h3 class="text-2xl font-bold">
-                        <span class="text-blue-400">Happy</span> Jobs
-                    </h3>
+                    <div class="flex items-center">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2NjcgNjY3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNjY3IiBoZWlnaHQ9IjY2NyIgcng9IjUwIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8xKSIvPgo8cGF0aCBkPSJNMjI3IDE5NlYzNjdIMjk1VjE5NkgzOTZWMTI4SDIyN1YxOTZaTTM5NiAzNjdWNDcxSDQ2NFYzNjdINTY1VjI5OUgzOTZWMzY3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE2MyAyOTlDMTYzIDI5OSAxNzIuNSAzNDggMjI3IDM2N0MyODEuNSAzODYgMzY5IDM3NiAzOTYgMzY3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTMzMyAzNTBMMzk2IDM2N0wzNzkgNDMwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8wXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjY2NyIgeTI9IjY2NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjOEI1Q0Y2Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0VDNDg5OSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Happy Jobs Logo" class="w-8 h-8 mr-3">
+                    </div>
                      <p class="text-gray-400 mt-2 text-sm">Your partner in finding the right job.</p>
                 </div>
                 <div>
